@@ -299,7 +299,7 @@
         } else {
             cImgLang = "";
         }
-        document.getElementById("popupImg").src = "/images/" + cGame + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png"
+        document.getElementById("popupImg").src = "images/" + cGame + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png"
     }
 
     /**
@@ -344,7 +344,7 @@
         })
         lLang[nLang].lGames.forEach(function (oGame) {
             oCard = document.getElementsByClassName("card")[0].cloneNode(true);
-            oCard.getElementsByTagName("img")[0].src = "/images/" + oGame.cID + "/icon.svg";
+            oCard.getElementsByTagName("img")[0].src = "images/" + oGame.cID + "/icon.svg";
             oCard.getElementsByTagName("img")[0].alt = oGame.cName;
             oCard.getElementsByTagName("h2")[0].innerHTML = oGame.cName;
             oCard.getElementsByTagName("p")[0].innerHTML = oGame.cDesc;
@@ -365,7 +365,7 @@
                 } else {
                     cImgLang = "";
                 }
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].src = "/images/" + oGame.cID + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png";
+                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].src = "images/" + oGame.cID + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png";
                 oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].alt = oGame.cName;
                 oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].setAttribute("dataGame", oGame.cID);
                 oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].setAttribute("dataIndex", nIndex);
