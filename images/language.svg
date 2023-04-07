@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" style="fill: none; stroke: white; stroke-width: 4; stroke-linecap: round; ">
+  <g transform="translate(72), scale(-1, 1)">
+    <path d="M 43 52 A 20 33 -90 1 1  58 47"/>
+    <path d="M 43 52 Q 45 65 62 66"/>
+    <path d="M 58 47 Q 50 60 62 66"/>
+  </g>
+</svg>

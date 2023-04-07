@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" style="stroke:white; stroke-linejoin:round; stroke-width:6; fill:none;">
+    <path transform="scale(0.9) translate(5,5)"
+          d="M10 20
+           L20 10
+           L35 25
+           L50 10
+           L60 20
+           L45 35
+           L60 50
+           L50 60
+           L35 45
+           L20 60
+           L10 50
+           L25 35
+           L10 20
+           Z" />
+</svg>

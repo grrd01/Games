@@ -1,0 +1,231 @@
+html {
+    user-select: none;
+
+    font-family: Arial, sans-serif;
+    font-size: large;
+    color: white;
+    text-shadow: 1px 1px 2px #000;
+
+    background: linear-gradient(#444, #222) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+}
+
+#page {
+    padding: 10px;
+    width: calc(100% - 20px);
+    max-width: 1000px;
+    margin: auto;
+}
+
+#title {
+    display: flex;
+    flex-direction: row;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+#hidden {
+    display: none;
+}
+
+.card {
+    margin-top: 40px;
+}
+.cardInfo {
+    display: flex;
+    flex-direction: row;
+}
+.cardIcon {
+    width: 200px;
+    max-width: 25vw;
+    margin: 20px 20px 0 0;
+    display: block;
+}
+.cardContent {
+    flex-grow: 1;
+}
+.cardTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardScreenshots {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.cardScreenshots img {
+    flex-grow: 1;
+    margin: 0;
+    width: calc(33% - 12px);
+    cursor: pointer;
+}
+.cardScreenshots img:not(:first-child) {
+    margin-left: 20px;
+}
+
+.mini-button {
+    border:  1px transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    cursor: pointer;
+    width: 60px;
+    height: 42px;
+    padding: 1px 0 1px 0;
+    display: inline-block;
+    margin-left: 1px;
+    background-image: linear-gradient(#444, #2d2d2d), linear-gradient(#999, #444 10px, #111 100%);
+    transition: background-image 0.6s linear;
+}
+.mini-buttonlist > .mini-button:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 1px 0 1px 1px;
+    margin-left: 0;
+}
+.mini-buttonlist > .mini-button:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 1px 1px 1px 0;
+}
+.mini-buttonlist {
+    height: 42px;
+    margin: 5px 5px 10px 5px;
+    display: flex;
+    border-radius: 10px;
+    background-color: #111;
+    box-shadow: 0 0 0.5vmin 2px #111;
+}
+.mini-button:active > img {
+    margin-top: 7px;
+    margin-bottom: 3px;
+}
+.mini-button:active > .bttxt {
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+.mini-img {
+    margin: 5px 15px 5px 15px;
+    height: 30px;
+    width: 30px;
+    max-height: calc(100% - 10px);
+    pointer-events: none;
+}
+.mini-button:hover, .mini-button:focus {
+    background-image: linear-gradient(#555555, #383838), linear-gradient(#ccc, #555 10px, #222 100%);
+}
+.mini-button:active {
+    background-image: linear-gradient(#202020, #2c2c2c), linear-gradient(#222, #111 calc(100% - 10px), #aaa 100%);
+}
+
+#popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+#popupImg {
+    margin: auto;
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+    cursor: pointer;
+}
+#popupClose, #popupPrev, #popupNext {
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+#popupClose {
+    top: 20px;
+    right: 20px;
+}
+#popupPrev {
+    bottom: 20px;
+    left: 20px;
+}
+#popupNext {
+    bottom: 20px;
+    right: 20px;
+}
+
+.popup-init {
+    visibility: hidden;
+    opacity: 0;
+}
+.popup-show {
+    animation: 1s fadeIn;
+    animation-fill-mode: forwards;
+}
+.popup-show > div:first-child {
+    animation: 1s zoomIn;
+    animation-fill-mode: forwards;
+}
+.popup-hide {
+    animation: 1s fadeOut;
+    animation-fill-mode: forwards;
+}
+.popup-hide > div:first-child {
+    animation: 1s zoomOut;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.75);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+@keyframes zoomOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.75);
+    }
+}
+
