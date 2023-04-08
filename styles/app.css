@@ -113,6 +113,7 @@ ul {
     border-radius: 10px;
     background-color: #111;
     box-shadow: 0 0 0.5vmin 2px #111;
+    align-self: end;
 }
 .mini-button:active > img {
     margin-top: 7px;

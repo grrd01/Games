@@ -247,6 +247,9 @@
             lLocImgs: [1,2,3]
         }]
     }];
+
+    let oCard;
+    let oListItem;
     let lOrientation = ["portrait", "landscape"];
     let nOrientationIndex;
     let nIndex;
@@ -302,48 +305,16 @@
         document.getElementById("popupImg").src = "images/" + cGame + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png"
     }
 
-    /**
-     * Seite initialisieren
-     */
-    function finit () {
-
-        let oCard;
-        let oListItem;
-
-        const cLang = (fUrlParam("lang") || navigator.language || navigator.browserLanguage || (navigator.languages || ["en"])[0]).substring(0, 2).toLowerCase();
-        if (cLang === "de") {
-            nLang = 1;
-        } else if (cLang === "fr") {
-            nLang = 2;
-        }
-
-        if (window.matchMedia("(orientation: portrait)").matches) {
-            nOrientationIndex = 0;
-        } else {
-            nOrientationIndex = 1;
-        }
-
-        let portrait = window.matchMedia("(orientation: portrait)");
-        portrait.addEventListener("change", function(e) {
-            console.log("orientation change!");
-            if(e.matches) {
-                nOrientationIndex = 0;
-            } else {
-                nOrientationIndex = 1;
-            }
-            document.querySelectorAll('.imgScreenshot').forEach(function(img) {
-                img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
-            });
-        })
-
+    function fSetLang() {
         document.getElementById("content").getElementsByTagName("p")[0].innerHTML = lLang[nLang].cDesc;
+        document.getElementById("content").getElementsByTagName("ul")[0].replaceChildren();
         lLang[nLang].lFeat.forEach(function (oFeat) {
             oListItem = document.createElement("li");
             oListItem.innerHTML = oFeat;
             document.getElementById("content").getElementsByTagName("ul")[0].appendChild(oListItem);
         })
-        lLang[nLang].lGames.forEach(function (oGame) {
-            oCard = document.getElementsByClassName("card")[0].cloneNode(true);
+        lLang[nLang].lGames.forEach(function (oGame, nCardIndex) {
+            oCard = document.getElementsByClassName("card")[nCardIndex];
             oCard.getElementsByTagName("img")[0].src = "images/" + oGame.cID + "/icon.svg";
             oCard.getElementsByTagName("img")[0].alt = oGame.cName;
             oCard.getElementsByTagName("h2")[0].innerHTML = oGame.cName;
@@ -376,11 +347,50 @@
                     fShowPopup(document.getElementById("popup"));
                 });
             }
-
-
-            document.getElementById("content").appendChild(oCard);
-            //document.getElementsByClassName("page")[0].appendChild(document.getElementsByClassName("card")[0].cloneNode(true));
         })
+    }
+
+    /**
+     * Seite initialisieren
+     */
+    function finit () {
+        const cLang = (fUrlParam("lang") || navigator.language || navigator.browserLanguage || (navigator.languages || ["en"])[0]).substring(0, 2).toLowerCase();
+        if (cLang === "de") {
+            nLang = 1;
+        } else if (cLang === "fr") {
+            nLang = 2;
+        }
+
+        if (window.matchMedia("(orientation: portrait)").matches) {
+            nOrientationIndex = 0;
+        } else {
+            nOrientationIndex = 1;
+        }
+
+        let portrait = window.matchMedia("(orientation: portrait)");
+        portrait.addEventListener("change", function(e) {
+            console.log("orientation change!");
+            if(e.matches) {
+                nOrientationIndex = 0;
+            } else {
+                nOrientationIndex = 1;
+            }
+            document.querySelectorAll('.imgScreenshot').forEach(function(img) {
+                img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
+            });
+        })
+
+        lLang[nLang].lGames.forEach(function (oGame) {
+            oCard = document.getElementsByClassName("card")[0].cloneNode(true);
+            document.getElementById("content").appendChild(oCard);
+        })
+
+        fSetLang();
+        document.getElementById("bLang").addEventListener("click", function () {
+            nLang += 1;
+            if (nLang > 2) {nLang = 0}
+            fSetLang();
+        });
 
         document.getElementById("popupClose").addEventListener("click", function () {
             fHidePopup(document.getElementById("popup"));
