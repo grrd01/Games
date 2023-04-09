@@ -10,7 +10,7 @@
 /*
  * Todo:
  *  X prev/next mit localized imgs
- *  - ul/screenshots in portrait/landscape in verschiedene parents
+ *  X ul/screenshots in portrait/landscape in verschiedene parents
  *  - Sprache wählen
  *  - Lupe auf Screenshots
  *  - Hover:Glow auf close/prev/next
@@ -350,6 +350,42 @@
         })
     }
 
+    function fSetLayout() {
+        const widthOutput = window.innerWidth;
+        // Screenshots
+        if (window.matchMedia("(orientation: portrait)").matches) {
+            // Portrait
+            nOrientationIndex = 0;
+        } else {
+            // Landscape
+            nOrientationIndex = 1;
+        }
+        // Content
+        if (widthOutput < 600) {
+            document.querySelectorAll(".card").forEach(function (oCard) {
+                oCard.querySelector(".content.portrait").append(...oCard.querySelector(".content.landscape").childNodes);
+            })
+        } else {
+            document.querySelectorAll(".card").forEach(function (oCard) {
+                oCard.querySelector(".content.landscape").append(...oCard.querySelector(".content.portrait").childNodes);
+            })
+        }
+
+        // Screenshots
+        if (widthOutput < 1000) {
+            document.querySelectorAll(".card").forEach(function (oCard) {
+                oCard.querySelector(".cardScreenshots.portrait").append(...oCard.querySelector(".cardScreenshots.landscape").childNodes);
+            })
+        } else {
+            document.querySelectorAll(".card").forEach(function (oCard) {
+                oCard.querySelector(".cardScreenshots.landscape").append(...oCard.querySelector(".cardScreenshots.portrait").childNodes);
+            })
+        }
+        document.querySelectorAll('.imgScreenshot').forEach(function(img) {
+            img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
+        });
+    }
+
     /**
      * Seite initialisieren
      */
@@ -361,26 +397,11 @@
             nLang = 2;
         }
 
-        if (window.matchMedia("(orientation: portrait)").matches) {
-            nOrientationIndex = 0;
-        } else {
-            nOrientationIndex = 1;
-        }
 
-        let portrait = window.matchMedia("(orientation: portrait)");
-        portrait.addEventListener("change", function(e) {
-            console.log("orientation change!");
-            if(e.matches) {
-                nOrientationIndex = 0;
-            } else {
-                nOrientationIndex = 1;
-            }
-            document.querySelectorAll('.imgScreenshot').forEach(function(img) {
-                img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
-            });
-        })
+        window.onresize = fSetLayout;
+        fSetLayout();
 
-        lLang[nLang].lGames.forEach(function (oGame) {
+        lLang[nLang].lGames.forEach(function () {
             oCard = document.getElementsByClassName("card")[0].cloneNode(true);
             document.getElementById("content").appendChild(oCard);
         })
