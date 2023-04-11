@@ -72,14 +72,28 @@ ul {
     justify-content: space-between;
     margin-top: 20px;
 }
-.cardScreenshots img {
-    flex-grow: 1;
-    margin: 0;
-    width: calc(33% - 12px);
+.screenshotStack {
+    position: relative; width: calc(33% - 12px);
+}
+.screenshotImg {
+    width: 100%;
+    display: block;
+}
+.screenshotHover {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.4s;
     cursor: pointer;
 }
-.cardScreenshots img:not(:first-child) {
-    margin-left: 20px;
+.screenshotHover:hover {
+    opacity: 1;
+}
+.hoverBackground {
+    position: absolute; top: 0; right: 0;bottom: 0; left: 0; background-color: rgba(0, 0, 0, 0.5);
+}
+.hoverForeground {
+    position: absolute; top: 0; right: 0;left: 0; bottom: 0; margin: auto; width: 20%;
+    pointer-events: none;
 }
 
 .mini-button {

@@ -11,10 +11,11 @@
  * Todo:
  *  X prev/next mit localized imgs
  *  X ul/screenshots in portrait/landscape in verschiedene parents
- *  - Sprache wählen
- *  - Lupe auf Screenshots
- *  - Hover:Glow auf close/prev/next
+ *  X Lupe auf Screenshots
  *  X französisch
+ *  - Sprache wählen
+ *  - Hover:Glow auf close/prev/next
+ *  - MiniButtons mit Text >1000px
  **/
 
 (function () {
@@ -24,7 +25,8 @@
     const lLang = [{
         cCode: "en",
         cLang: "English",
-        cDesc: "grrd’s Games is a collection of browser games developed by Gérard Tyedmers. The following applies to all games:",
+        cDesc: "Free games? Without flickering ads? Which do not spy on you? You found the right place! <br>" +
+            "grrd’s Games is a collection of browser games developed by Gérard Tyedmers. The following applies to all games:",
         lFeat: [
             "Free of charge",
             "No advertising",
@@ -99,7 +101,8 @@
     }, {
         cCode: "de",
         cLang: "Deutsch",
-        cDesc: "grrd's Games ist eine Sammlung von Browserspielen, die von Gérard Tyedmers entwickelt werden. Für alle Spiele gilt:",
+        cDesc: "Kostenlose Spiele? Ohne flackernde Werbung? Welche dich nicht auspionieren? Genau das gibt es hier! <br>" +
+            "grrd's Games ist eine Sammlung von Browserspielen, die von Gérard Tyedmers entwickelt werden. Für alle Spiele gilt:",
         lFeat: [
             "Gratis",
             "Werbefrei",
@@ -174,7 +177,8 @@
     }, {
         cCode : "fr",
         cLang: "français",
-        cDesc: "grrd's Games est une collection de jeux par navigateur développés par Gérard Tyedmers. Tous les jeux sont",
+        cDesc: "Des jeux gratuits ? Sans publicité clignotante ? Qui ne t'espionnent pas ? Tu es au bon endroit ! <br>" +
+            "grrd's Games est une collection de jeux par navigateur développés par Gérard Tyedmers. Tous les jeux sont",
         lFeat: [
             "Gratuit",
             "Sans publicité",
@@ -336,14 +340,15 @@
                 } else {
                     cImgLang = "";
                 }
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].src = "images/" + oGame.cID + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png";
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].alt = oGame.cName;
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].setAttribute("dataGame", oGame.cID);
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].setAttribute("dataIndex", nIndex);
-                oCard.getElementsByClassName("imgScreenshot")[nIndex - 1].addEventListener("click", function (event) {
-                    document.getElementById("popupImg").src = event.target.src;
-                    nIndex = parseInt(event.target.getAttribute("dataIndex"));
-                    cGame = event.target.getAttribute("dataGame");
+                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].src = "images/" + oGame.cID + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png";
+                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].alt = oGame.cName;
+                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("dataGame", oGame.cID);
+                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("dataIndex", nIndex);
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("click", function (event) {
+                    const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+                    document.getElementById("popupImg").src = zoomImage.src;
+                    nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
+                    cGame = zoomImage.getAttribute("dataGame");
                     fShowPopup(document.getElementById("popup"));
                 });
             }
@@ -381,7 +386,7 @@
                 oCard.querySelector(".cardScreenshots.landscape").append(...oCard.querySelector(".cardScreenshots.portrait").childNodes);
             })
         }
-        document.querySelectorAll('.imgScreenshot').forEach(function(img) {
+        document.querySelectorAll('.screenshotImg').forEach(function(img) {
             img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
         });
     }
