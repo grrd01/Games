@@ -6,11 +6,8 @@ html {
     color: white;
     text-shadow: 1px 1px 2px #000;
 
-    background: linear-gradient(#444, #222) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: linear-gradient(#444, #222);
+    background-attachment: fixed;
 }
 
 body {
@@ -244,3 +241,25 @@ ul {
     }
 }
 
+.copyright {
+    text-align: center;
+}
+
+.mailImg {
+    width: 40px;
+    margin-bottom: -8px;
+}
+
+a:link {
+    color: #FC9B00;
+    transition: color 0.3s ease;
+}
+a:visited {
+    color: #DE5B00;
+}
+a:hover, a:focus {
+    color: #FDC400;
+}
+a:active {
+    color: #FDC400;
+}
