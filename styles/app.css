@@ -25,6 +25,7 @@ body {
 #title {
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 
 #content {
@@ -101,10 +102,14 @@ ul {
     width: 60px;
     height: 42px;
     padding: 1px 0 1px 0;
-    display: inline-block;
+    /*display: inline-block;*/
     margin-left: 1px;
     background-image: linear-gradient(#444, #2d2d2d), linear-gradient(#999, #444 10px, #111 100%);
     transition: background-image 0.6s linear;
+    color: white;
+    font-size: large;
+    display: flex;
+    align-items: center;
 }
 .mini-buttonlist > .mini-button:first-child {
     border-top-left-radius: 10px;
@@ -130,6 +135,10 @@ ul {
     margin-top: 7px;
     margin-bottom: 3px;
 }
+.mini-button > .bttxt {
+    margin-right: 10px;
+    display: none;
+}
 .mini-button:active > .bttxt {
     margin-top: 12px;
     margin-bottom: 8px;
@@ -146,6 +155,18 @@ ul {
 }
 .mini-button:active {
     background-image: linear-gradient(#202020, #2c2c2c), linear-gradient(#222, #111 calc(100% - 10px), #aaa 100%);
+}
+
+@media screen and (min-width: 1000px) {
+    .mini-button {
+        width: 120px;
+    }
+    .mini-button > .bttxt {
+        display: block;
+    }
+    .mini-img {
+        margin: 5px 5px 5px 15px;
+    }
 }
 
 #popup {

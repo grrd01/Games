@@ -176,8 +176,8 @@
         }]
     }, {
         cCode : "fr",
-        cLang: "français",
-        cDesc: "Des jeux gratuits ? Sans publicité clignotante ? Qui ne t'espionnent pas ? Tu es au bon endroit ! <br>" +
+        cLang: "Français",
+        cDesc: "Des jeux gratuits? Sans publicité clignotante? Qui ne t'espionnent pas? Tu es au bon endroit! <br>" +
             "grrd's Games est une collection de jeux par navigateur développés par Gérard Tyedmers. Tous les jeux sont",
         lFeat: [
             "Gratuit",
@@ -310,6 +310,7 @@
     }
 
     function fSetLang() {
+        document.getElementById("selLang").innerHTML = lLang[nLang].cLang;
         document.getElementById("content").getElementsByTagName("p")[0].innerHTML = lLang[nLang].cDesc;
         document.getElementById("content").getElementsByTagName("ul")[0].replaceChildren();
         lLang[nLang].lFeat.forEach(function (oFeat) {
