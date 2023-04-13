@@ -9,12 +9,6 @@
 
 /*
  * Todo:
- *  X prev/next mit localized imgs
- *  X ul/screenshots in portrait/landscape in verschiedene parents
- *  X Lupe auf Screenshots
- *  X französisch
- *  X Sprache wählen
- *  X MiniButtons mit Text >1000px
  *  - Hover:Glow auf close/prev/next
 
  **/
@@ -298,6 +292,9 @@
         ePopup.classList.add("popup-hide");
     }
 
+    /**
+     * nächstes/voriges Bild im Screenshot-Popup anzeigen
+     */
     function fChangePopupImg () {
         if (nIndex > 3) {nIndex = 1;}
         if (nIndex < 1) {nIndex = 3;}
@@ -310,6 +307,9 @@
         document.getElementById("popupImg").src = "images/" + cGame + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png"
     }
 
+    /**
+     * Texte und Bilder in der ausgewählten Sprache anzeigen
+     */
     function fSetLang() {
         document.getElementById("selLang").innerHTML = lLang[nLang].cLang;
         document.getElementById("content").getElementsByTagName("p")[0].innerHTML = lLang[nLang].cDesc;
@@ -326,7 +326,6 @@
             oCard.getElementsByTagName("h2")[0].innerHTML = oGame.cName;
             oCard.getElementsByTagName("p")[0].innerHTML = oGame.cDesc;
             oCard.getElementsByTagName("a")[0].href = "https://" + oGame.cID + ".grrd.ch";
-            //oCard.getElementsByTagName("button")[0].setAttribute("onclick", "location.href='https://" + oGame.cID + ".grrd.ch'");
             oCard.getElementsByTagName("button")[0].setAttribute("onclick", "window.open('https://" + oGame.cID + ".grrd.ch', '_blank')");
 
             //oCard.getElementsByTagName("a")[1].href = "https://" + oGame.cID + ".grrd.ch";
@@ -364,6 +363,9 @@
         })
     }
 
+    /**
+     * Elemente nach Screen-Grösse positionieren
+     */
     function fSetLayout() {
         const widthOutput = window.innerWidth;
         // Screenshots
@@ -395,7 +397,7 @@
                 oCard.querySelector(".cardScreenshots.landscape").append(...oCard.querySelector(".cardScreenshots.portrait").childNodes);
             })
         }
-        document.querySelectorAll('.screenshotImg').forEach(function(img) {
+        document.querySelectorAll(".screenshotImg").forEach(function(img) {
             img.src = img.src.replace(lOrientation[1 - nOrientationIndex], lOrientation[nOrientationIndex])
         });
     }
@@ -420,15 +422,15 @@
             oOpt.getElementsByClassName("optLong")[0].innerHTML = oLang.cLang;
             oOpt.getElementsByClassName("optShort")[0].innerHTML = oLang.cCode.toUpperCase();
             oOpt.addEventListener("click", function () {
-                document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                document.querySelectorAll(".mini-selectlist").forEach(function(option) {
                     option.classList.add("closed");
                 });
                 nLang = nIndex;
                 fSetLang();
             });
-            oOpt.addEventListener('focusout', (event) => {
+            oOpt.addEventListener("focusout", (event) => {
                 if (!event.relatedTarget || !event.relatedTarget.classList.contains("option")) {
-                    document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                    document.querySelectorAll(".mini-selectlist").forEach(function(option) {
                         option.classList.add("closed");
                     });
                 }
@@ -443,13 +445,13 @@
 
         fSetLang();
         document.getElementById("bLang").addEventListener("click", function () {
-            document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+            document.querySelectorAll(".mini-selectlist").forEach(function(option) {
                 option.classList.toggle("closed");
             });
         });
-        document.getElementById("bLang").addEventListener('focusout', (event) => {
+        document.getElementById("bLang").addEventListener("focusout", (event) => {
             if (!event.relatedTarget || !event.relatedTarget.classList.contains("option")) {
-                document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                document.querySelectorAll(".mini-selectlist").forEach(function(option) {
                     option.classList.add("closed");
                 });
             }

@@ -1,0 +1,54 @@
+{
+  "name": "grrd's Games",
+  "short_name": "Games",
+  "version": "1.0",
+  "description": "Free games? Without flickering ads? Which do not spy on you? You found the right place! grrd’s Games is a collection of browser games developed by Gérard Tyedmers.",
+  "default_locale": "en",
+  "icons": [
+    {
+      "src": "../images/dice/icon.svg",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "../images/4inarow/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    },
+    {
+      "src": "../images/dice/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    },
+    {
+      "src": "../images/memo/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    },
+    {
+      "src": "../images/puzzle/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    },
+    {
+      "src": "../images/reversi/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    }
+  ,
+    {
+      "src": "../images/tictactoe/landscape2.png",
+      "type": "image/png",
+      "sizes": "1334x750"
+    }
+  ],
+  "categories": ["games", "logic games", "casual games", "family games"],
+  "background_color": "#444",
+  "theme_color": "#444",
+  "display": "standalone",
+  "start_url": "../index.html",
+  "author": "Gerard Tyedmers"
+}
