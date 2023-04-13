@@ -13,9 +13,10 @@
  *  X ul/screenshots in portrait/landscape in verschiedene parents
  *  X Lupe auf Screenshots
  *  X französisch
- *  - Sprache wählen
+ *  X Sprache wählen
+ *  X MiniButtons mit Text >1000px
  *  - Hover:Glow auf close/prev/next
- *  - MiniButtons mit Text >1000px
+
  **/
 
 (function () {
@@ -352,6 +353,13 @@
                     cGame = zoomImage.getAttribute("dataGame");
                     fShowPopup(document.getElementById("popup"));
                 });
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchend", function (event) {
+                    const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+                    document.getElementById("popupImg").src = zoomImage.src;
+                    nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
+                    cGame = zoomImage.getAttribute("dataGame");
+                    fShowPopup(document.getElementById("popup"));
+                });
             }
         })
     }
@@ -407,6 +415,27 @@
         window.onresize = fSetLayout;
         fSetLayout();
 
+        lLang.forEach(function (oLang,nIndex) {
+            const oOpt = document.getElementsByClassName("option")[0].cloneNode(true);
+            oOpt.getElementsByClassName("optLong")[0].innerHTML = oLang.cLang;
+            oOpt.getElementsByClassName("optShort")[0].innerHTML = oLang.cCode.toUpperCase();
+            oOpt.addEventListener("click", function () {
+                document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                    option.classList.add("closed");
+                });
+                nLang = nIndex;
+                fSetLang();
+            });
+            oOpt.addEventListener('focusout', (event) => {
+                if (!event.relatedTarget || !event.relatedTarget.classList.contains("option")) {
+                    document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                        option.classList.add("closed");
+                    });
+                }
+            });
+            document.getElementsByClassName("mini-selectlist")[0].appendChild(oOpt);
+        })
+
         lLang[nLang].lGames.forEach(function () {
             oCard = document.getElementsByClassName("card")[0].cloneNode(true);
             document.getElementById("content").appendChild(oCard);
@@ -414,9 +443,16 @@
 
         fSetLang();
         document.getElementById("bLang").addEventListener("click", function () {
-            nLang += 1;
-            if (nLang > 2) {nLang = 0}
-            fSetLang();
+            document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                option.classList.toggle("closed");
+            });
+        });
+        document.getElementById("bLang").addEventListener('focusout', (event) => {
+            if (!event.relatedTarget || !event.relatedTarget.classList.contains("option")) {
+                document.querySelectorAll('.mini-selectlist').forEach(function(option) {
+                    option.classList.add("closed");
+                });
+            }
         });
 
         document.getElementById("popupClose").addEventListener("click", function () {

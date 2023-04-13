@@ -38,12 +38,16 @@ ul {
     margin-bottom: 0;
 }
 
+h2 {
+    margin: 0;
+}
+
 #hidden {
     display: none;
 }
 
 .card {
-    margin-top: 40px;
+    margin-top: 60px;
 }
 .cardInfo {
     display: flex;
@@ -52,11 +56,12 @@ ul {
 .cardIcon {
     width: 200px;
     max-width: 25vw;
-    margin: 20px 20px 0 0;
+    margin: 0;
     display: block;
 }
 .cardContent {
     flex-grow: 1;
+    margin-left: 20px;
 }
 .cardTitle {
     display: flex;
@@ -102,7 +107,6 @@ ul {
     width: 60px;
     height: 42px;
     padding: 1px 0 1px 0;
-    /*display: inline-block;*/
     margin-left: 1px;
     background-image: linear-gradient(#444, #2d2d2d), linear-gradient(#999, #444 10px, #111 100%);
     transition: background-image 0.6s linear;
@@ -110,6 +114,7 @@ ul {
     font-size: large;
     display: flex;
     align-items: center;
+    z-index: 100;
 }
 .mini-buttonlist > .mini-button:first-child {
     border-top-left-radius: 10px;
@@ -123,9 +128,32 @@ ul {
     padding: 1px 1px 1px 0;
 }
 .mini-buttonlist {
-    height: 42px;
-    margin: 5px 5px 10px 5px;
     display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    background-color: #111;
+    box-shadow: 0 0 0.5vmin 2px #111;
+    align-self: end;
+}
+.mini-selectlist > .mini-button:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1px;
+    margin-bottom: 0;
+}
+.mini-selectlist.closed > .mini-button:first-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 1px 1px 1px 0;
+}
+.mini-selectlist > .mini-button:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 1px 0 1px 0;
+}
+.mini-selectlist {
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
     background-color: #111;
     box-shadow: 0 0 0.5vmin 2px #111;
@@ -138,6 +166,14 @@ ul {
 .mini-button > .bttxt {
     margin-right: 10px;
     display: none;
+}
+.mini-button > .optLong {
+    display: none;
+    margin-left: 10px;
+}
+.mini-button > .optShort {
+    display: block;
+    margin-left: 10px;
 }
 .mini-button:active > .bttxt {
     margin-top: 12px;
@@ -167,6 +203,37 @@ ul {
     .mini-img {
         margin: 5px 5px 5px 15px;
     }
+    .mini-button > .optLong {
+        display: block;
+    }
+    .mini-button > .optShort {
+        display: none;
+    }
+    .cardScreenshots.portrait {
+        margin-top: 0;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .cardScreenshots.landscape {
+        margin-top: 0;
+    }
+}
+
+.select {
+    height: 42px;
+    align-self: end;
+}
+.option {
+    transition: height 0.3s linear, visibility 0.3s ease 0s;
+    visibility: visible;
+    z-index: 90;
+}
+.closed > .option {
+    height: 0;
+    padding: 0;
+    transition: height 0.3s linear, visibility 0s ease 0.3s;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 #popup {
@@ -179,6 +246,7 @@ ul {
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
+    z-index: 200;
 }
 #popupImg {
     margin: auto;
@@ -269,6 +337,10 @@ ul {
 .mailImg {
     width: 40px;
     margin-bottom: -8px;
+}
+
+a {
+    height: fit-content;
 }
 
 a:link {
