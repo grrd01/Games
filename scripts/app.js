@@ -254,6 +254,7 @@
     let nIndex;
     let cGame;
     let cImgLang;
+    let bTouchMove = false;
 
     /**
      * URL-Parameter zurückgeben
@@ -352,12 +353,20 @@
                     cGame = zoomImage.getAttribute("dataGame");
                     fShowPopup(document.getElementById("popup"));
                 });
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchstart", function (event) {
+                    bTouchMove = false;
+                });
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchmove", function (event) {
+                    bTouchMove = true;
+                });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchend", function (event) {
-                    const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
-                    document.getElementById("popupImg").src = zoomImage.src;
-                    nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
-                    cGame = zoomImage.getAttribute("dataGame");
-                    fShowPopup(document.getElementById("popup"));
+                    if (!bTouchMove) {
+                        const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+                        document.getElementById("popupImg").src = zoomImage.src;
+                        nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
+                        cGame = zoomImage.getAttribute("dataGame");
+                        fShowPopup(document.getElementById("popup"));
+                    }
                 });
             }
         })
@@ -451,6 +460,11 @@
         });
         document.getElementById("bLang").addEventListener("focusout", (event) => {
             if (!event.relatedTarget || !event.relatedTarget.classList.contains("option")) {
+                document.querySelectorAll(".mini-selectlist").forEach(function(option) {
+                    option.classList.add("closed");
+                });
+            }
+            if (!event.relatedTarget && event.touches && event.touches[0] && event.touches[0].target.classList.contains("option")) {
                 document.querySelectorAll(".mini-selectlist").forEach(function(option) {
                     option.classList.add("closed");
                 });
