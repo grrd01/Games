@@ -464,11 +464,6 @@
                     option.classList.add("closed");
                 });
             }
-            if (!event.relatedTarget && event.touches && event.touches[0] && event.touches[0].target.classList.contains("option")) {
-                document.querySelectorAll(".mini-selectlist").forEach(function(option) {
-                    option.classList.add("closed");
-                });
-            }
         });
 
         document.getElementById("popupClose").addEventListener("click", function () {
