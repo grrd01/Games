@@ -47,7 +47,7 @@ h2 {
 }
 
 .card {
-    margin-top: 60px;
+    margin-top: 80px;
 }
 .cardInfo {
     display: flex;
@@ -186,6 +186,7 @@ h2 {
     max-height: calc(100% - 10px);
     pointer-events: none;
 }
+
 .mini-button:hover, .mini-button:focus {
     background-image: linear-gradient(#555555, #383838), linear-gradient(#ccc, #555 10px, #222 100%);
 }
@@ -202,6 +203,9 @@ h2 {
     }
     .mini-img {
         margin: 5px 5px 5px 15px;
+    }
+    .select .mini-img {
+        margin-left: 10px;
     }
     .mini-button > .optLong {
         display: block;
@@ -332,6 +336,7 @@ h2 {
 
 .copyright {
     text-align: center;
+    margin-top: 60px;
 }
 
 .mailImg {
@@ -355,4 +360,15 @@ a:hover, a:focus {
 }
 a:active {
     color: #FDC400;
+}
+
+.reveal{
+    position: relative;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+.reveal.active{
+    transform: translateY(0);
+    opacity: 1;
 }

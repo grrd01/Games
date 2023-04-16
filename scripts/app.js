@@ -412,6 +412,22 @@
     }
 
     /**
+     * Animation für Elemente, welche in den sichbaren Bereich gescrollt werden
+     */
+    function fReveal() {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        document.querySelectorAll(".reveal").forEach(function(reveal) {
+            let elementTop = reveal.getBoundingClientRect().top;
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add("active");
+            } else {
+                reveal.classList.remove("active");
+            }
+        });
+    }
+
+    /**
      * Seite initialisieren
      */
     function finit () {
@@ -451,6 +467,12 @@
             oCard = document.getElementsByClassName("card")[0].cloneNode(true);
             document.getElementById("content").appendChild(oCard);
         })
+        document.querySelectorAll(".screenshotStack.reveal").forEach(function(reveal, nIndex) {
+            reveal.style.transitionDelay = ((nIndex % 4) / 10).toString() + "s";
+        });
+        window.addEventListener("scroll", fReveal);
+        fReveal();
+
 
         fSetLang();
         document.getElementById("bLang").addEventListener("click", function () {
