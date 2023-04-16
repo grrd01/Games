@@ -335,8 +335,12 @@ h2 {
 }
 
 .copyright {
-    text-align: center;
+    display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; align-items: flex-end;
     margin-top: 60px;
+    margin-bottom: 18px;
+}
+nobr {
+    margin-top: 10px;
 }
 
 .mailImg {

@@ -353,10 +353,10 @@
                     cGame = zoomImage.getAttribute("dataGame");
                     fShowPopup(document.getElementById("popup"));
                 });
-                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchstart", function (event) {
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchstart", function () {
                     bTouchMove = false;
                 });
-                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchmove", function (event) {
+                oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchmove", function () {
                     bTouchMove = true;
                 });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchend", function (event) {
