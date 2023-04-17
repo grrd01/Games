@@ -427,15 +427,6 @@
     }
 
     /**
-     * Address-Bar in mobilen Browsern ausblenden
-     */
-    window.addEventListener("load",function() {
-        setTimeout(function(){
-            window.scrollTo(0, 1);
-        }, 0);
-    });
-
-    /**
      * Seite initialisieren
      */
     function finit () {
@@ -446,8 +437,13 @@
             nLang = 2;
         }
 
-
-        window.onresize = fSetLayout;
+        window.addEventListener('resize', function(event) {
+            fSetLayout();
+            // verzögert nochmals aufrufen für iOS;
+            setTimeout(function() {
+                fSetLayout();
+            }, 500);
+        }, true);
         fSetLayout();
 
         lLang.forEach(function (oLang,nIndex) {
