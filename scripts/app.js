@@ -437,13 +437,7 @@
             nLang = 2;
         }
 
-        window.addEventListener('resize', function(event) {
-            fSetLayout();
-            // verzögert nochmals aufrufen für iOS;
-            setTimeout(function() {
-                fSetLayout();
-            }, 500);
-        }, true);
+        window.onresize = fSetLayout;
         fSetLayout();
 
         lLang.forEach(function (oLang,nIndex) {
