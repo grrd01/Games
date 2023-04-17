@@ -10,7 +10,6 @@
 /*
  * Todo:
  *  - Hover:Glow auf close/prev/next
-
  **/
 
 (function () {
@@ -416,7 +415,7 @@
      */
     function fReveal() {
         const windowHeight = window.innerHeight;
-        const elementVisible = 100;
+        const elementVisible = 80;
         document.querySelectorAll(".reveal").forEach(function(reveal) {
             let elementTop = reveal.getBoundingClientRect().top;
             if (elementTop < windowHeight - elementVisible) {
@@ -426,6 +425,15 @@
             }
         });
     }
+
+    /**
+     * Address-Bar in mobilen Browsern ausblenden
+     */
+    window.addEventListener("load",function() {
+        setTimeout(function(){
+            window.scrollTo(0, 1);
+        }, 0);
+    });
 
     /**
      * Seite initialisieren
