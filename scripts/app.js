@@ -201,7 +201,7 @@
             lFeat: [
                 "Trois niveaux de difficulté différents",
                 "Joue en local ou en ligne contre un autre joueur",
-                "Statistiques détaillées de vos parties"
+                "Statistiques détaillées de tes parties"
             ],
             lLocImgs: [1,2,3]
         },{
