@@ -1,6 +1,5 @@
 html {
     user-select: none;
-
     font-family: Arial, sans-serif;
     font-size: large;
     color: white;
@@ -24,7 +23,26 @@ body {
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
+    animation: 1s ease 0s 1 slideIn;
+    /*transition: filter 0.5s;*/
 }
+/*
+#title:hover {
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.9)) brightness(1.75);
+}
+*/
+
+@keyframes slideIn {
+    0%   {
+        opacity: 0;
+        transform: translateY(-80px)
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 #content {
     display: flex;
@@ -284,16 +302,8 @@ h2 {
     animation: 1s fadeIn;
     animation-fill-mode: forwards;
 }
-.popup-show > div:first-child {
-    animation: 1s zoomIn;
-    animation-fill-mode: forwards;
-}
 .popup-hide {
     animation: 1s fadeOut;
-    animation-fill-mode: forwards;
-}
-.popup-hide > div:first-child {
-    animation: 1s zoomOut;
     animation-fill-mode: forwards;
 }
 
@@ -306,14 +316,6 @@ h2 {
         opacity: 1;
     }
 }
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.75);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
 @keyframes fadeOut {
     0% {
         opacity: 1;
@@ -321,14 +323,6 @@ h2 {
     100% {
         visibility: hidden;
         opacity: 0;
-    }
-}
-@keyframes zoomOut {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.75);
     }
 }
 
