@@ -9,8 +9,8 @@
 
 /*
  * Todo:
- *  - Hover:Glow auf close/prev/next
  *  - Bug iOS: nach Rotate haben Icon-imgs im Layout noch die alte Grösse
+ *  - Animation beim Wechseln der Popup-Imgs
  **/
 
 (function () {
