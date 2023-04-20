@@ -33,19 +33,19 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        // imagemin: {
-        //     dynamic: {
-        //         options: {
-        //             optimizationLevel: 3
-        //         },
-        //         files: [{
-        //             expand: true,
-        //             cwd: 'images/',
-        //             src: ['**/*.{png,jpg}'],
-        //             dest: 'dist/images'
-        //         }]
-        //     }
-        // },
+        imagemin: {
+            dynamic: {
+                options: {
+                    optimizationLevel: 3
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'images/',
+                    src: ['**/*.{png,jpg}'],
+                    dest: 'dist/images'
+                }]
+            }
+        },
         cssmin: {
             dist: {
                 options: {
@@ -92,11 +92,13 @@ module.exports = function(grunt) {
                     {expand: true, flatten: true, src: ['manifest/*'], dest: 'dist/manifest/'},
                     {expand: true, flatten: true, src: ['**.txt'], dest: 'dist/'},
                     {expand: true, flatten: true, src: ['**.md'], dest: 'dist/'},
-                    {expand: true,
-                                cwd: 'images/',
-                                src: ['**/*.{png,jpg}'],
-                                dest: 'dist/images'
-                            }
+                    {expand: true, flatten: true, src: ['CNAME'], dest: 'dist/'}
+                    // , {
+                    //     expand: true,
+                    //     cwd: 'images/',
+                    //     src: ['**/*.{png,jpg}'],
+                    //     dest: 'dist/images'
+                    // }
                 ]
             }
         },
@@ -113,7 +115,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-terser');
-    //grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-replace');
@@ -123,11 +125,11 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'terser',
         'svgmin',
-        //'imagemin',
+        'imagemin',
         'cssmin',
         'htmlmin',
         'replace',
         'copy',
-        'gh-pages'
+        //'gh-pages'
     ]);
 };
