@@ -1,17 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" style="stroke:white; stroke-linejoin:round; stroke-width:6; fill:none;">
-    <path transform="scale(0.9) translate(5,5)"
-          d="M10 20
-           L20 10
-           L35 25
-           L50 10
-           L60 20
-           L45 35
-           L60 50
-           L50 60
-           L35 45
-           L20 60
-           L10 50
-           L25 35
-           L10 20
-           Z" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" stroke="#fff" stroke-linejoin="round" stroke-width="6" fill="none"><path d="M13.5 22.5l9-9L36 27l13.5-13.5 9 9L45 36l13.5 13.5-9 9L36 45 22.5 58.5l-9-9L27 36 13.5 22.5z" stroke-width="5.4"/></svg>

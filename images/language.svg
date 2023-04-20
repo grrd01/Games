@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" style="fill: none; stroke: white; stroke-width: 5; stroke-linecap: round; ">
-  <g transform="translate(72), scale(-1, 1)">
-    <path d="M 43 52 A 20 33 -90 1 1  58 47"/>
-    <path d="M 43 52 Q 45 65 62 66"/>
-    <path d="M 58 47 Q 50 60 62 66"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M29 52a33 20 0 10-15-5M29 52q-2 13-19 14M14 47q8 13-4 19"/></svg>
