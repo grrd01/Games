@@ -24,13 +24,6 @@ module.exports = function(grunt) {
                     {removeViewBox: false}
                 ]
             },
-            // dist: {
-            //     files: [
-            //         {'dist/images/': 'images/*.svg'},
-            //         {'dist/images/zoom.svg': 'images/zoom.svg'},
-            //         {'dist/images/x.svg': 'images/x.svg'}
-            //     ]
-            // }
             dist: {
                 files: [{
                     expand: true,
