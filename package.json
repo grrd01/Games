@@ -15,6 +15,7 @@
     "grunt-contrib-imagemin": "^4.0.0",
     "grunt-replace": "^2.0.2",
     "grunt-svgmin": "^6.0.1",
+    "terser": "5.17.1",
     "grunt-terser": "^2.0.0",
     "load-grunt-tasks": "^5.1.0",
     "grunt-gh-pages": "^4.0.0"
