@@ -1,0 +1,22 @@
+{
+  "name": "grrds-games",
+  "version": "0.1.0",
+  "description": "grrd's Games is a collection of html5 pwa browser games",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grrd01/Games.git"
+  },
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-htmlmin": "^3.1.0",
+    "grunt-contrib-imagemin": "^4.0.0",
+    "grunt-replace": "^2.0.2",
+    "grunt-svgmin": "^6.0.1",
+    "grunt-terser": "^2.0.0",
+    "load-grunt-tasks": "^5.1.0",
+    "grunt-gh-pages": "^4.0.0"
+  }
+}

@@ -66,7 +66,7 @@
         },{
             cID: "tictactoe",
             cName: "grrd's Tic Tac Toe",
-            cDesc: "Who is the fist player to get three fields in a line? You can play against another player or the computer.",
+            cDesc: "Who is the first player to get three fields in a line? You can play against another player or the computer.",
             lFeat: [
                 "Play against the Computer in three levels of difficulty",
                 "Local game against a fellow player"
