@@ -111,8 +111,8 @@ module.exports = function(grunt) {
             options: {
                 base: 'dist',
                 user: {
-                    name: 'Gerard Tyedmers',
-                    email: 'grrd@gmx.net'
+                    name: 'grrd01',
+                    email: 'gtyedmers@gmx.net'
                 }
             },
             src: ['**']
