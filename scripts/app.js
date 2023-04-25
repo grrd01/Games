@@ -252,7 +252,6 @@
     let lOrientation = ["portrait", "landscape"];
     let nOrientationIndex;
     let nIndex;
-    let cGame;
     let cImgLang;
     let bTouchMove = false;
 
@@ -296,16 +295,13 @@
     /**
      * nächstes/voriges Bild im Screenshot-Popup anzeigen
      */
-    function fChangePopupImg () {
-        if (nIndex > 3) {nIndex = 1;}
-        if (nIndex < 1) {nIndex = 3;}
-        const nGameIndex = lLang[nLang].lGames.findIndex(item => item.cID === cGame);
-        if (lLang[nLang].lGames[nGameIndex].lLocImgs.includes(nIndex) && lLang[nLang].cCode !== "en") {
-            cImgLang = lLang[nLang].cCode;
-        } else {
-            cImgLang = "";
-        }
-        document.getElementById("popupImg").src = "images/" + cGame + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png"
+    function fChangePopupImg (nIncrement) {
+        document.querySelectorAll(".popupImg").forEach(function (oImg) {
+            let nNewIndex = parseInt(oImg.getAttribute("data-index")) + nIncrement;
+            nNewIndex = nNewIndex > 3 ? 1 : nNewIndex;
+            nNewIndex = nNewIndex < 1 ? 3 : nNewIndex;
+            oImg.setAttribute("data-index", nNewIndex);
+        })
     }
 
     /**
@@ -344,13 +340,14 @@
                 }
                 oCard.getElementsByClassName("screenshotImg")[nIndex - 1].src = "images/" + oGame.cID + "/" + lOrientation[nOrientationIndex] + nIndex + cImgLang + ".png";
                 oCard.getElementsByClassName("screenshotImg")[nIndex - 1].alt = oGame.cName;
-                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("dataGame", oGame.cID);
-                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("dataIndex", nIndex);
+                oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("data-index", nIndex);
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("click", function (event) {
-                    const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
-                    document.getElementById("popupImg").src = zoomImage.src;
-                    nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
-                    cGame = zoomImage.getAttribute("dataGame");
+                    const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+                    const nImgIndex = parseInt(oSelectedImg.getAttribute("data-index"));
+                    const lAllImgs = event.target.parentElement.parentElement.parentElement.querySelectorAll(".screenshotImg");
+                    document.querySelector(".popupImg[data-index='1']").src = lAllImgs[nImgIndex - 2 < 0 ? 2 : nImgIndex - 2].src;
+                    document.querySelector(".popupImg[data-index='2']").src = lAllImgs[nImgIndex - 1].src;
+                    document.querySelector(".popupImg[data-index='3']").src = lAllImgs[nImgIndex > 2 ? 0 : nImgIndex].src;
                     fShowPopup(document.getElementById("popup"));
                 });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchstart", function () {
@@ -361,10 +358,12 @@
                 });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchend", function (event) {
                     if (!bTouchMove) {
-                        const zoomImage = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
-                        document.getElementById("popupImg").src = zoomImage.src;
-                        nIndex = parseInt(zoomImage.getAttribute("dataIndex"));
-                        cGame = zoomImage.getAttribute("dataGame");
+                        const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+                        const nImgIndex = parseInt(oSelectedImg.getAttribute("data-index"));
+                        const lAllImgs = event.target.parentElement.parentElement.parentElement.querySelectorAll(".screenshotImg");
+                        document.querySelector(".popupImg[data-index='1']").src = lAllImgs[nImgIndex - 2 < 0 ? 2 : nImgIndex - 2].src;
+                        document.querySelector(".popupImg[data-index='2']").src = lAllImgs[nImgIndex - 1].src;
+                        document.querySelector(".popupImg[data-index='3']").src = lAllImgs[nImgIndex > 2 ? 0 : nImgIndex].src;
                         fShowPopup(document.getElementById("popup"));
                     }
                 });
@@ -490,16 +489,16 @@
         document.getElementById("popupClose").addEventListener("click", function () {
             fHidePopup(document.getElementById("popup"));
         });
-        document.getElementById("popupImg").addEventListener("click", function () {
-            fHidePopup(document.getElementById("popup"));
+        document.querySelectorAll(".popupImg").forEach(function(popupImg) {
+            popupImg.addEventListener("click", function () {
+                fHidePopup(document.getElementById("popup"));
+            });
         });
         document.getElementById("popupPrev").addEventListener("click", function (){
-            nIndex -= 1;
-            fChangePopupImg();
+            fChangePopupImg(1);
         });
         document.getElementById("popupNext").addEventListener("click", function () {
-            nIndex += 1;
-            fChangePopupImg();
+            fChangePopupImg(-1);
         });
     }
 
