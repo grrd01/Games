@@ -10,7 +10,6 @@
 /*
  * Todo:
  *  - Bug iOS: nach Rotate haben Icon-imgs im Layout noch die alte Grösse
- *  - Animation beim Wechseln der Popup-Imgs
  **/
 
 (function () {
@@ -254,6 +253,10 @@
     let nIndex;
     let cImgLang;
     let bTouchMove = false;
+    let nTouchStartX;
+    let nTouchStartY;
+    let nTouchEndX;
+    let nTouchEndY;
 
     /**
      * URL-Parameter zurückgeben
@@ -272,8 +275,15 @@
     /**
      * Popup einblenden
      * @param {element} ePopup - Popup, welches angezeigt werden soll
+     * @param {event} event - event, welcher das Popup öffnete. Enthält informationen über das gewünschte Bild
      */
-    function fShowPopup(ePopup) {
+    function fShowPopup(ePopup, event) {
+        const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
+        const nImgIndex = parseInt(oSelectedImg.getAttribute("data-index"));
+        const lAllImgs = event.target.parentElement.parentElement.parentElement.querySelectorAll(".screenshotImg");
+        document.querySelector(".popupImg[data-index='1']").src = lAllImgs[nImgIndex - 2 < 0 ? 2 : nImgIndex - 2].src;
+        document.querySelector(".popupImg[data-index='2']").src = lAllImgs[nImgIndex - 1].src;
+        document.querySelector(".popupImg[data-index='3']").src = lAllImgs[nImgIndex > 2 ? 0 : nImgIndex].src;
         //$("iTitleFieldset").disabled = true;
         // Fix for Firefox OnKeydown
         //document.activeElement.blur();
@@ -302,6 +312,28 @@
             nNewIndex = nNewIndex < 1 ? 3 : nNewIndex;
             oImg.setAttribute("data-index", nNewIndex);
         })
+    }
+    /**
+     * Swipe auf Popup-Imgs erkennen
+     */
+    function fHandleGesture() {
+        if (nTouchStartX - nTouchEndX > 50) {
+            // Swipe left
+            fChangePopupImg(-1);
+        }
+        if (nTouchStartX - nTouchEndX < -50) {
+            // Swipe right
+            fChangePopupImg(1);
+        }
+        // if (nTouchEndY < nTouchStartY) {
+        //     console.log('Swiped Up');
+        // }
+        // if (nTouchEndY > nTouchStartY) {
+        //     console.log('Swiped Down');
+        // }
+        // if (nTouchEndY === nTouchStartY) {
+        //     console.log('Tap');
+        // }
     }
 
     /**
@@ -342,13 +374,7 @@
                 oCard.getElementsByClassName("screenshotImg")[nIndex - 1].alt = oGame.cName;
                 oCard.getElementsByClassName("screenshotImg")[nIndex - 1].setAttribute("data-index", nIndex);
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("click", function (event) {
-                    const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
-                    const nImgIndex = parseInt(oSelectedImg.getAttribute("data-index"));
-                    const lAllImgs = event.target.parentElement.parentElement.parentElement.querySelectorAll(".screenshotImg");
-                    document.querySelector(".popupImg[data-index='1']").src = lAllImgs[nImgIndex - 2 < 0 ? 2 : nImgIndex - 2].src;
-                    document.querySelector(".popupImg[data-index='2']").src = lAllImgs[nImgIndex - 1].src;
-                    document.querySelector(".popupImg[data-index='3']").src = lAllImgs[nImgIndex > 2 ? 0 : nImgIndex].src;
-                    fShowPopup(document.getElementById("popup"));
+                    fShowPopup(document.getElementById("popup"), event);
                 });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchstart", function () {
                     bTouchMove = false;
@@ -358,13 +384,9 @@
                 });
                 oCard.getElementsByClassName("screenshotHover")[nIndex - 1].addEventListener("touchend", function (event) {
                     if (!bTouchMove) {
-                        const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
-                        const nImgIndex = parseInt(oSelectedImg.getAttribute("data-index"));
-                        const lAllImgs = event.target.parentElement.parentElement.parentElement.querySelectorAll(".screenshotImg");
-                        document.querySelector(".popupImg[data-index='1']").src = lAllImgs[nImgIndex - 2 < 0 ? 2 : nImgIndex - 2].src;
-                        document.querySelector(".popupImg[data-index='2']").src = lAllImgs[nImgIndex - 1].src;
-                        document.querySelector(".popupImg[data-index='3']").src = lAllImgs[nImgIndex > 2 ? 0 : nImgIndex].src;
-                        fShowPopup(document.getElementById("popup"));
+                        event.stopPropagation();
+                        event.preventDefault();
+                        fShowPopup(document.getElementById("popup"), event);
                     }
                 });
             }
@@ -493,7 +515,18 @@
             popupImg.addEventListener("click", function () {
                 fHidePopup(document.getElementById("popup"));
             });
+            popupImg.addEventListener('touchstart', function (event) {
+                nTouchStartX = event.changedTouches[0].screenX;
+                nTouchStartY = event.changedTouches[0].screenY;
+            }, false);
+
+            popupImg.addEventListener('touchend', function (event) {
+                nTouchEndX = event.changedTouches[0].screenX;
+                nTouchEndY = event.changedTouches[0].screenY;
+                fHandleGesture();
+            }, false);
         });
+
         document.getElementById("popupPrev").addEventListener("click", function (){
             fChangePopupImg(1);
         });
