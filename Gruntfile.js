@@ -89,7 +89,7 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, flatten: true, src: ['manifest/*'], dest: 'dist/manifest/'},
+                    {expand: true, flatten: true, src: ['appmanifest.json'], dest: 'dist/'},
                     {expand: true, flatten: true, src: ['**.txt'], dest: 'dist/'},
                     {expand: true, flatten: true, src: ['**.md'], dest: 'dist/'},
                     {expand: true, flatten: true, src: ['CNAME'], dest: 'dist/'}
