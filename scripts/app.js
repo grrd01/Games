@@ -533,6 +533,10 @@
         document.getElementById("popupNext").addEventListener("click", function () {
             fChangePopupImg(-1);
         });
+        document.getElementById("popup").addEventListener("touchmove", function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        });
     }
 
     finit();

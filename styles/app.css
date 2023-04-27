@@ -97,7 +97,7 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 .cardScreenshots {
     display: flex;
@@ -164,7 +164,6 @@ h2 {
     border-radius: 10px;
     background-color: #111;
     box-shadow: 0 0 0.5vmin 2px #111;
-    align-self: end;
 }
 .mini-selectlist > .mini-button:first-child {
     border-top-left-radius: 10px;
