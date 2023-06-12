@@ -181,7 +181,7 @@
             "Fonctionnent aussi hors ligne",
             "Open Source",
             "Conformes à la protection des données : aucune donnée te concernant n'est enregistrée",
-            "Fabriqué en Suisse"
+            "Fabriqués en Suisse"
         ],
         lGames: [{
             cID: "puzzle",
