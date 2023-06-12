@@ -174,13 +174,13 @@
         cDesc: "Des jeux gratuits? Sans publicité clignotante? Qui ne t'espionnent pas? Tu es au bon endroit! <br>" +
             "grrd's Games est une collection de jeux par navigateur développés par Gérard Tyedmers. Tous les jeux sont",
         lFeat: [
-            "Gratuit",
+            "Gratuits",
             "Sans publicité",
-            "Fonctionne sur téléphone portable, ordinateur et Smart TV",
+            "Fonctionnent sur téléphone portable, ordinateur et Smart TV",
             "Peuvent être installés",
             "Fonctionnent aussi hors ligne",
             "Open Source",
-            "Conforme à la protection des données : aucune donnée te concernant n'est enregistrée",
+            "Conformes à la protection des données : aucune donnée te concernant n'est enregistrée",
             "Fabriqué en Suisse"
         ],
         lGames: [{
