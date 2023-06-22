@@ -256,6 +256,7 @@ h2 {
 .select {
     height: 42px;
     align-self: end;
+    z-index: 80;
 }
 .option {
     transition: height 0.3s ease, visibility 0.3s ease 0s;
