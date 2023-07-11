@@ -12,7 +12,7 @@
  *  - Bug iOS: nach Rotate haben Icon-imgs im Layout noch die alte Grösse
  **/
 
-(function () {
+{
     "use strict";
 
     let nLang = 0;
@@ -268,14 +268,14 @@
         if (searchParams.has(cKey)) {
             return searchParams.get(cKey);
         } else {
-            return false;
+            return undefined;
         }
     }
 
     /**
      * Popup einblenden
-     * @param {element} ePopup - Popup, welches angezeigt werden soll
-     * @param {event} event - event, welcher das Popup öffnete. Enthält informationen über das gewünschte Bild
+     * @param {HTMLElement} ePopup - Popup, welches angezeigt werden soll
+     * @param {MouseEvent} event - event, welcher das Popup öffnete. Enthält informationen über das gewünschte Bild
      */
     function fShowPopup(ePopup, event) {
         const oSelectedImg = event.target.parentElement.parentElement.getElementsByClassName("screenshotImg")[0];
@@ -294,7 +294,7 @@
 
     /**
      * Popup ausblenden
-     * @param {element} ePopup - Popup, welches ausgeblendet werden soll
+     * @param {HTMLElement} ePopup - Popup, welches ausgeblendet werden soll
      */
     function fHidePopup(ePopup) {
         //$("iTitleFieldset").disabled = false;
@@ -452,7 +452,7 @@
      * Seite initialisieren
      */
     function finit () {
-        const cLang = (fUrlParam("lang") || navigator.language || navigator.browserLanguage || (navigator.languages || ["en"])[0]).substring(0, 2).toLowerCase();
+        const cLang = (fUrlParam("lang") || navigator.language || (navigator.languages || ["en"])[0]).substring(0, 2).toLowerCase();
         if (cLang === "de") {
             nLang = 1;
         } else if (cLang === "fr") {
@@ -541,5 +541,5 @@
 
     finit();
 
-}());
+}
 
