@@ -12,7 +12,7 @@
  *  - Bug iOS: nach Rotate haben Icon-imgs im Layout noch die alte Grösse
  **/
 
-{
+(function () {
     "use strict";
 
     let nLang = 0;
@@ -541,5 +541,5 @@
 
     finit();
 
-}
+}());
 
