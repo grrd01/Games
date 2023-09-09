@@ -340,6 +340,7 @@
      * Texte und Bilder in der ausgewählten Sprache anzeigen
      */
     function fSetLang() {
+        document.documentElement.lang = lLang[nLang].cCode;
         document.getElementById("selLang").innerHTML = lLang[nLang].cLang;
         document.getElementById("content").getElementsByTagName("p")[0].innerHTML = lLang[nLang].cDesc;
         document.getElementById("content").getElementsByTagName("ul")[0].replaceChildren();
