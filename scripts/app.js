@@ -91,6 +91,16 @@
                 "Play locally or online against a fellow player"
             ],
             lLocImgs: [1,2,3]
+        },{
+            cID: "movies",
+            cName: "grrd's Movies",
+            cDesc: "Best entertainment without commercial breaks",
+            lFeat: [
+                "Immerse yourself in the beauty of Madagascar's wilderness. Lemurs, baobab trees, and much more await you.",
+                "From mountain gorillas in the rainforest to elephants in the savannah – Uganda is full of surprises.",
+                "A retro thriller full of suspense: The not-so-planned camp is Switzerland’s cinematic surprise from 2001."
+            ],
+            lLocImgs: []
         }]
     }, {
         cCode: "de",
@@ -167,6 +177,16 @@
                 "Spiele lokal oder online gegen einen Mitspieler"
             ],
             lLocImgs: [1,2,3]
+        },{
+            cID: "movies",
+            cName: "grrd's Movies",
+            cDesc: "Beste Unterhaltung ohne Werbeunterbrechung",
+            lFeat: [
+                "Tauche in die Schönheit der madagassischen Wildnis ein. Lemuren, Baobab-Bäume und vieles mehr erwartet dich.",
+                "Vom Berggorilla im Regenwald bis zum Elefanten in der Savanne: Uganda steckt voller Überraschungen.",
+                "Ein Retro-Thriller voller Nervenkitzel: Das nicht so geplante Lager ist die Schweizer Kinoüberraschung aus dem Jahr 2001."
+            ],
+            lLocImgs: []
         }]
     }, {
         cCode : "fr",
@@ -243,6 +263,16 @@
                 "Joue en local ou en ligne contre un autre joueur"
             ],
             lLocImgs: [1,2,3]
+        },{
+            cID: "movies",
+            cName: "grrd's Movies",
+            cDesc: "Le meilleur divertissement sans interruptions publicitaires",
+            lFeat: [
+                "Plongez dans la beauté de la nature sauvage de Madagascar. Lémuriens, baobabs et bien plus encore vous attendent.",
+                "Du gorille de montagne dans la forêt tropicale à l’éléphant de la savane : l’Ouganda est plein de surprises.",
+                "Un thriller rétro plein de suspense : Le camp pas si prévu est la surprise cinématographique suisse de 2001."
+            ],
+            lLocImgs: []
         }]
     }];
 
@@ -355,8 +385,8 @@
             oCard.getElementsByTagName("img")[0].alt = oGame.cName;
             oCard.getElementsByTagName("h2")[0].innerHTML = oGame.cName;
             oCard.getElementsByTagName("p")[0].innerHTML = oGame.cDesc;
-            oCard.getElementsByTagName("a")[0].href = "https://" + oGame.cID + ".grrd.ch";
-            oCard.getElementsByTagName("button")[0].setAttribute("onclick", "window.open('https://" + oGame.cID + ".grrd.ch', '_blank')");
+            oCard.getElementsByTagName("a")[0].href = "https://grrd.duckdns.org/" + oGame.cID;
+            oCard.getElementsByTagName("button")[0].setAttribute("onclick", "window.open('https://grrd.duckdns.org/" + oGame.cID + "', '_blank')");
 
             //oCard.getElementsByTagName("a")[1].href = "https://" + oGame.cID + ".grrd.ch";
             oCard.getElementsByTagName("ul")[0].replaceChildren();
